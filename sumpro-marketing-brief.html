@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sumPRO — Digital Marketing Strategy Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0f;
+    --bg: #f4f1eb;
+    --card: #ffffff;
+    --accent: #d4420a;
+    --accent2: #1a3a5c;
+    --accent3: #e8a020;
+    --muted: #6b6b78;
+    --border: #e0dbd0;
+    --tag-bg: #f0ece3;
+    --syne: 'Syne', sans-serif;
+    --dm: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--dm);
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1060px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--accent2);
+    color: #fff;
+    font-family: var(--syne);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 80px 0 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: 'sumPRO';
+    position: absolute;
+    right: -20px; bottom: -40px;
+    font-family: var(--syne);
+    font-size: 180px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.035);
+    letter-spacing: -6px;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .hero-eyebrow {
+    font-family: var(--syne);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: var(--syne);
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    max-width: 680px;
+    margin-bottom: 24px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 40px;
+  }
+  .meta-pills {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .meta-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.8);
+    font-family: var(--syne);
+  }
+
+  /* ── CONVERGENCE MAP ── */
+  .convergence-section {
+    padding: 80px 0 60px;
+    background: var(--bg);
+  }
+  .section-label {
+    font-family: var(--syne);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--syne);
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.12;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .section-intro {
+    font-size: 15.5px;
+    color: var(--muted);
+    max-width: 580px;
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  /* Convergence visual */
+  .convergence-map {
+    display: grid;
+    grid-template-columns: 1fr 200px 1fr;
+    gap: 0;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .conv-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .conv-col.right { align-items: flex-end; }
+  .conv-node {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-family: var(--syne);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    max-width: 240px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .conv-node:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px rgba(212,66,10,0.12);
+    transform: translateY(-2px);
+  }
+  .conv-node .icon { font-size: 18px; flex-shrink: 0; }
+  .conv-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+  }
+  .conv-core {
+    width: 160px; height: 160px;
+    background: var(--accent2);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: var(--syne);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    line-height: 1.3;
+    box-shadow: 0 0 0 16px rgba(26,58,92,0.07), 0 0 0 32px rgba(26,58,92,0.04);
+    position: relative;
+  }
+  .conv-core .core-emoji { font-size: 32px; margin-bottom: 6px; }
+  .conv-outcome {
+    background: var(--accent);
+    color: #fff;
+    padding: 20px 32px;
+    border-radius: 12px;
+    font-family: var(--syne);
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.04em;
+    margin-top: 32px;
+    line-height: 1.5;
+  }
+  .conv-outcome span { display: block; font-size: 11px; font-weight: 400; opacity: 0.85; margin-top: 4px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ── SECTION WRAPPER ── */
+  .section { padding: 64px 0; }
+  .section.alt { background: var(--ink); color: #fff; }
+  .section.alt .section-title { color: #fff; }
+  .section.alt .section-intro { color: rgba(255,255,255,0.6); }
+  .section.alt .section-label { color: var(--accent3); }
+
+  /* ── AUDIT GRID ── */
+  .audit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .audit-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .audit-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent);
+  }
+  .audit-card.blue::before { background: var(--accent2); }
+  .audit-card.gold::before { background: var(--accent3); }
+  .audit-card h4 {
+    font-family: var(--syne);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .audit-card ul {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .audit-card ul li {
+    font-size: 13.5px;
+    padding-left: 20px;
+    position: relative;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .audit-card ul li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .audit-card.blue ul li::before { color: var(--accent2); }
+  .audit-card.gold ul li::before { color: var(--accent3); }
+  .issue-tag {
+    display: inline-block;
+    background: #fff0ec;
+    color: var(--accent);
+    font-size: 10px;
+    font-family: var(--syne);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .issue-tag.blue { background: #edf2f8; color: var(--accent2); }
+  .issue-tag.warn { background: #fff8ec; color: var(--accent3); }
+
+  /* ── STRATEGY CARDS ── */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .strat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.2s ease;
+  }
+  .strat-card:hover { border-color: rgba(255,255,255,0.25); }
+  .strat-card .strat-icon {
+    width: 48px; height: 48px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  .strat-card h4 {
+    font-family: var(--syne);
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .strat-card p {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+  }
+  .strat-card ul {
+    list-style: none;
+    margin-top: 12px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .strat-card ul li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .strat-card ul li::before {
+    content: '·';
+    position: absolute; left: 4px;
+    color: var(--accent3);
+    font-weight: 800;
+  }
+
+  /* ── SEO + AEO TABLE ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 680px) {
+    .two-col { grid-template-columns: 1fr; }
+    .convergence-map { grid-template-columns: 1fr; }
+    .conv-col.right { align-items: flex-start; }
+    .conv-center { flex-direction: row; justify-content: center; padding: 20px 0; }
+  }
+  .pillar-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .pillar-head {
+    padding: 18px 24px;
+    font-family: var(--syne);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pillar-head.red { background: var(--accent); color: #fff; }
+  .pillar-head.dark { background: var(--accent2); color: #fff; }
+  .pillar-body { padding: 20px 24px; }
+  .pillar-body ul {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .pillar-body ul li {
+    font-size: 13.5px;
+    color: var(--muted);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .pillar-body ul li::before {
+    content: '✓';
+    position: absolute; left: 0;
+    color: var(--accent2);
+    font-weight: 700;
+  }
+
+  /* ── LEAD GEN ── */
+  .lead-gen-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 680px) { .lead-gen-grid { grid-template-columns: 1fr; } }
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    border-top: 3px solid var(--accent);
+    transition: box-shadow 0.2s ease;
+  }
+  .tool-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+  .tool-card.blue { border-top-color: var(--accent2); }
+  .tool-card.gold { border-top-color: var(--accent3); }
+  .tool-num {
+    font-family: var(--syne);
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .tool-card h4 {
+    font-family: var(--syne);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .tool-card p {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .gate-tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    font-family: var(--syne);
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+
+  /* ── PHASE TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 36px;
+    margin-top: 8px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px; top: 4px; bottom: 4px;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -30px; top: 5px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent2);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--accent2);
+  }
+  .tl-item h5 {
+    font-family: var(--syne);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .tl-phase {
+    font-family: var(--syne);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .tl-item p {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── KPI TABLE ── */
+  .kpi-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+  .kpi-table thead {
+    background: var(--accent2);
+    color: #fff;
+    font-family: var(--syne);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .kpi-table th { padding: 14px 18px; text-align: left; }
+  .kpi-table td {
+    padding: 13px 18px;
+    font-size: 13.5px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+  .kpi-table tr:last-child td { border-bottom: none; }
+  .kpi-table tr:nth-child(even) td { background: #fafaf8; }
+  .kpi-label {
+    font-family: var(--syne);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* ── TOOLS STACK ── */
+  .tools-section { padding: 64px 0; background: #fff; }
+  .tools-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .tool-group h5 {
+    font-family: var(--syne);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .tool-group ul {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 7px;
+  }
+  .tool-group ul li {
+    font-size: 13.5px;
+    color: var(--muted);
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .tool-group ul li span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent3);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  /* ── SOCIAL STRATEGY ── */
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+  .social-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: transform 0.2s ease;
+  }
+  .social-card:hover { transform: translateY(-3px); }
+  .social-platform {
+    font-family: var(--syne);
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .social-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .freq-badge {
+    font-family: var(--syne);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--tag-bg);
+    color: var(--ink);
+    padding: 3px 10px;
+    border-radius: 100px;
+    display: inline-block;
+  }
+
+  /* ── COMPETITIVE INTEL ── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .comp-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .comp-card h5 {
+    font-family: var(--syne);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent3);
+    margin-bottom: 10px;
+  }
+  .comp-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .comp-card ul li { font-size: 13px; color: rgba(255,255,255,0.6) !important; padding-left: 16px; position: relative; line-height: 1.55; }
+  .comp-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+  .comp-card ul li strong { color: rgba(255,255,255,0.9) !important; }
+
+  /* ── FOOTER ── */
+  .brief-footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 36px 32px;
+    font-size: 12px;
+    font-family: var(--syne);
+    letter-spacing: 0.06em;
+  }
+  .brief-footer strong { color: #fff; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: linear-gradient(135deg, var(--accent2) 0%, #0e2540 100%);
+    border-radius: 14px;
+    padding: 32px 36px;
+    color: #fff;
+    margin-top: 40px;
+  }
+  .callout h4 {
+    font-family: var(--syne);
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .callout p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+
+  /* ── CONTENT STRATEGY ── */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 780px) { .content-grid { grid-template-columns: 1fr; } }
+  .content-pillar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .cp-head {
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 20px;
+    font-family: var(--syne);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .cp-body { padding: 18px 20px; }
+  .cp-body ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .cp-body ul li { font-size: 13px; color: var(--muted); padding-left: 16px; position: relative; line-height: 1.55; }
+  .cp-body ul li::before { content: '·'; position: absolute; left: 4px; color: var(--accent); font-size: 18px; font-weight: 800; line-height: 1.1; }
+
+  /* responsive table */
+  @media (max-width: 600px) {
+    .kpi-table, .kpi-table thead, .kpi-table tbody, .kpi-table th, .kpi-table td, .kpi-table tr { display: block; }
+    .kpi-table thead tr { display: none; }
+    .kpi-table td { padding: 8px 14px; }
+  }
+
+  /* ── FADE-IN ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section, .hero, .convergence-section, .tools-section {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  strong { font-weight: 500; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>Confidential — Digital Marketing Strategy Brief</span>
+  <span>sumPRO India Pvt. Ltd. · sumpro.in · Prepared 2026</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Digital Marketing Strategy Proposal</p>
+    <h1>Building <span>sumPRO</span><br>From the Ground Up</h1>
+    <p class="hero-sub">A full-funnel growth strategy covering SEO & AEO, paid campaigns, social media, brand building, lead generation, and measurable performance — for a brand starting from zero digital presence.</p>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:32px;padding:16px 22px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;width:fit-content;">
+      <div style="width:44px;height:44px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--syne);font-size:17px;font-weight:800;color:#fff;flex-shrink:0;">DS</div>
+      <div>
+        <div style="font-family:var(--syne);font-size:13px;font-weight:700;color:#fff;letter-spacing:0.02em;">Devendra Sharma</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:2px;">Digital Marketing Specialist &nbsp;·&nbsp; 5+ Years of Experience</div>
+      </div>
+      <div style="width:1px;height:36px;background:rgba(255,255,255,0.12);margin:0 4px;"></div>
+      <div style="font-family:var(--syne);font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">Strategy By</div>
+    </div>
+
+    <div class="meta-pills">
+      <span class="meta-pill">🏢 sumPRO India Pvt. Ltd.</span>
+      <span class="meta-pill">📍 Gurugram, Haryana</span>
+      <span class="meta-pill">🚀 Founded January 2026</span>
+      <span class="meta-pill">🛠 Software · Cloud · HR · Digital Marketing</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONVERGENCE MAP -->
+<section class="convergence-section">
+  <div class="container">
+    <p class="section-label">The Big Picture</p>
+    <h2 class="section-title">Every Strategy, One Outcome</h2>
+    <p class="section-intro">All pillars of this marketing plan feed into a single unified growth engine. Here's how each initiative converges to build brand authority, generate qualified leads, and drive measurable business growth for sumPRO.</p>
+
+    <div class="convergence-map">
+      <!-- LEFT NODES -->
+      <div class="conv-col">
+        <div class="conv-node"><span class="icon">🔍</span><div><strong>SEO & AEO</strong><br><span style="font-size:11px;font-weight:400;color:var(--muted)">Organic discoverability</span></div></div>
+        <div class="conv-node"><span class="icon">✍️</span><div><strong>Content Strategy</strong><br><span style="font-size:11px;font-weight:400;color:var(--muted)">Authority & engagement</span></div></div>
+        <div class="conv-node"><span class="icon">📣</span><div><strong>Paid Ads (Google + Meta)</strong><br><span style="font-size:11px;font-weight:400;color:var(--muted)">Immediate reach & leads</span></div></div>
+      </div>
+      <!-- CENTER -->
+      <div class="conv-center">
+        <div class="conv-core">
+          <span class="core-emoji">🎯</span>
+          BRAND<br>AUTHORITY<br>&amp; GROWTH
+        </div>
+      </div>
+      <!-- RIGHT NODES -->
+      <div class="conv-col right">
+        <div class="conv-node"><span class="icon">📱</span><div><strong>Social Media & Brand</strong><br><span style="font-size:11px;font-weight:400;color:var(--muted)">Visibility & trust</span></div></div>
+        <div class="conv-node"><span class="icon">🧲</span><div><strong>Lead Generation Tools</strong><br><span style="font-size:11px;font-weight:400;color:var(--muted)">Gated resources & funnels</span></div></div>
+        <div class="conv-node"><span class="icon">📊</span><div><strong>KPIs & Analytics</strong><br><span style="font-size:11px;font-weight:400;color:var(--muted)">Data-driven decisions</span></div></div>
+      </div>
+    </div>
+
+    <div class="conv-outcome">
+      Qualified Leads → Clients → Revenue → Reputation → More Organic Traffic → More Leads
+      <span>The compounding flywheel that turns sumPRO into the go-to digital & tech brand in its space</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- WEBSITE AUDIT -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Phase 1 — Foundation</p>
+    <h2 class="section-title">Website Audit: SEO, Content & AI Optimization</h2>
+    <p class="section-intro">Before any campaign goes live, the website needs to be the strongest possible foundation. Current state of sumpro.in reveals several high-priority gaps.</p>
+
+    <div class="audit-grid">
+      <!-- TECHNICAL SEO -->
+      <div class="audit-card">
+        <h4>⚙️ Technical SEO Issues <span class="issue-tag">Critical</span></h4>
+        <ul>
+          <li>Footer social media links point to <strong>#</strong> — not real profiles. Social signals missing entirely</li>
+          <li>Homepage shows contradictory numbers: "50+ enterprise clients" vs "15+ Enterprise Clients" vs "15+ Happy Clients" — damages credibility & E-E-A-T</li>
+          <li>Meta description is generic; needs keyword-intent alignment per page</li>
+          <li>All pages share identical meta keywords — zero page-level SEO differentiation</li>
+          <li>No structured data (Schema.org) for Organization, Service, FAQ, or LocalBusiness — missed AI Overview triggers</li>
+          <li>Canonical tags all point to root domain — sub-pages need proper canonical setup</li>
+          <li>No blog-level article schema; reduces chances of appearing in SERP rich results</li>
+        </ul>
+      </div>
+      <!-- ON-PAGE SEO -->
+      <div class="audit-card blue">
+        <h4>📄 On-Page & Content Quality <span class="issue-tag blue">High Priority</span></h4>
+        <ul>
+          <li>Homepage H1: "IT Software Development Company | Cloud, HR, SEO Services" — good keyword density but weak brand narrative hook</li>
+          <li>Service pages lack detailed content — thin copy doesn't signal topical depth to Google or LLMs</li>
+          <li>Blog section exists but appears unpopulated or thin — major missed SEO & authority opportunity</li>
+          <li>No case study or results-backed content anywhere on site — critical for B2B trust</li>
+          <li>Portfolio page exists but without detailed project narratives, measurable outcomes, or client industry tags</li>
+          <li>Internal linking structure is minimal — no topic clusters or pillar-page architecture evident</li>
+        </ul>
+      </div>
+      <!-- AEO / GEO -->
+      <div class="audit-card gold">
+        <h4>🤖 AEO / GEO Optimization <span class="issue-tag warn">Immediate Action</span></h4>
+        <ul>
+          <li>No FAQ sections on service pages — FAQ schema is the #1 driver for AI Overview citations</li>
+          <li>No direct-answer content blocks ("What is [service]?", "How does cloud migration work?") — LLMs can't extract clean answers</li>
+          <li>No structured comparison content (e.g., sumPRO vs typical alternatives) that AI tools love to reference</li>
+          <li>Zero use of concise definition paragraphs at page tops — required for featured snippets & ChatGPT/Gemini citations</li>
+          <li>Content lacks "people also ask" targeting — these queries are now directly mapped to AI answers</li>
+          <li>No author bios or team expertise pages — Google's E-E-A-T requires demonstrated human expertise signals</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>🔧 Immediate Action Plan — Before Any Ad Spend</h4>
+      <p>Fix social profile links → Add Organization + LocalBusiness + Service schema to all pages → Add FAQ schema to every service page → Write 400+ word content blocks per service → Standardize all social proof numbers → Set up GA4 + GSC → Create author profile pages for key team members. This audit work will multiply the ROI of every subsequent campaign.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SEO + AEO STRATEGY -->
+<section class="section" style="background: #fafaf8;">
+  <div class="container">
+    <p class="section-label">Phase 2 — Organic Growth</p>
+    <h2 class="section-title">SEO & AEO/GEO Strategy</h2>
+    <p class="section-intro">Dual-track search strategy — traditional SEO for long-term rankings, AEO/GEO to capture AI-driven discovery through ChatGPT, Gemini, Perplexity, and Google AI Overviews.</p>
+
+    <div class="two-col">
+      <div class="pillar-card">
+        <div class="pillar-head red">🔍 Core SEO Strategy</div>
+        <div class="pillar-body">
+          <ul>
+            <li>Build pillar-cluster architecture: one pillar page per service (e.g., "Software Development Services in India"), supported by 5–8 cluster blogs targeting long-tail keywords</li>
+            <li>Target high-intent, low-competition keywords: "IT company Gurugram", "custom ERP development India", "cloud migration AWS India", "HR payroll outsourcing startup"</li>
+            <li>Local SEO: Google Business Profile setup, local citations, location-tagged service pages</li>
+            <li>Technical: XML sitemap, proper robots.txt, page speed optimization, Core Web Vitals</li>
+            <li>Backlink strategy: guest posts on Indian tech/startup publications (YourStory, Inc42, Entrepreneur India), industry directories, NASSCOM listings</li>
+            <li>Monthly GSC + GA4 audit: track impressions, CTR, clicks per page, and fix crawl errors</li>
+            <li><strong>Tools:</strong> SEMrush, Ahrefs, Screaming Frog, Google Search Console, GA4</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-head dark">🤖 AEO / GEO Strategy (AI Search)</div>
+        <div class="pillar-body">
+          <ul>
+            <li>Add FAQ schema to every service page with 6–8 Q&A pairs answering specific buyer questions (e.g., "How much does cloud migration cost in India?")</li>
+            <li>Write "definition-first" content blocks: every page opens with a clear, citable 2–3 sentence definition of the service</li>
+            <li>Create dedicated "What is [X]?" educational articles targeting queries that AI tools pull from (e.g., "What is ERP software?", "What is a Healthcare IT system?")</li>
+            <li>Comparison content: "sumPRO vs Freelance Developers — Which Is Right for Your Startup?" — this format is heavily cited by AI tools</li>
+            <li>Structured data: HowTo schema for technical process pages, Review schema for testimonials</li>
+            <li>Submit XML sitemap to Bing (used by Copilot) and ensure robots.txt allows GPTBot, ClaudeBot, GoogleBot-Extended</li>
+            <li><strong>Tools:</strong> Schema Markup Generator, AlsoAsked, AnswerThePublic, Perplexity monitoring</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- COMPETITIVE ANALYSIS -->
+<section class="section alt">
+  <div class="container">
+    <p class="section-label">Market Intelligence</p>
+    <h2 class="section-title">Competitive Analysis</h2>
+    <p class="section-intro">Understanding the landscape sumPRO is entering — and the exact gaps that can be exploited for fast, targeted positioning.</p>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <h5>🎯 sumPRO's Competitive Advantages</h5>
+        <ul>
+          <li>Full-stack offering: software dev + cloud + HR + compliance + digital marketing under one roof — rare for SMBs</li>
+          <li>Flat-structure boutique agency vs slow-moving large firms — agility as a selling point</li>
+          <li>Compliance + tech combo is underserved in the Indian SMB/startup market</li>
+          <li>Founded in 2026 — can position as a "new-era" digital company not burdened by legacy practices</li>
+          <li>Direct founder-led engagement (Nandini, Director) creates personal trust advantage</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <h5>🔍 Who to Study &amp; Outmaneuver</h5>
+        <ul>
+          <li><strong>Tata Consultancy Services, Infosys:</strong> Too large, impersonal — position sumPRO as the "agile alternative for growing businesses"</li>
+          <li><strong>Webchutney, Digitas India:</strong> Pure digital marketing — sumPRO bundles tech + marketing, a unique combo</li>
+          <li><strong>Razorpay X (compliance), ClearTax:</strong> Narrow focus; sumPRO wraps compliance inside broader business growth solutions</li>
+          <li><strong>Local Gurugram IT agencies:</strong> Audit top 10 GSC results for "IT company Gurugram" — build content that directly answers their gaps</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <h5>📌 Keyword Gap Opportunities</h5>
+        <ul>
+          <li>"IT company for startups India" — low competition, high intent</li>
+          <li>"Cloud migration support small business India" — underserved</li>
+          <li>"GST registration + web development package India" — unique combo keyword</li>
+          <li>"Healthcare IT software India" — mentioned on site but no SEO content backing it</li>
+          <li>"Datacenter operations India SME" — niche, almost zero competition</li>
+          <li>"Digital marketing + compliance agency India" — only sumPRO can credibly rank here</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTENT STRATEGY -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Phase 3 — Content Engine</p>
+    <h2 class="section-title">Content Strategy & Audience Engagement</h2>
+    <p class="section-intro">Content is sumPRO's most scalable asset. A structured three-pillar approach builds organic traffic, demonstrates expertise, and nurtures leads through every funnel stage.</p>
+
+    <div class="content-grid">
+      <div class="content-pillar">
+        <div class="cp-head">📚 Layer 1 — Educational (TOFU)</div>
+        <div class="cp-body">
+          <ul>
+            <li>"What is Cloud Migration? A Guide for Indian SMBs"</li>
+            <li>"ERP vs Custom Software: What Does Your Startup Actually Need?"</li>
+            <li>"GST Registration Process in India — Step by Step"</li>
+            <li>"How to Choose an IT Partner for Your Healthcare Clinic"</li>
+            <li>"Understanding Structured Cabling for Data Centres"</li>
+            <li>Format: Long-form (1500–2500 words), FAQ schema, featured image, AI-answer optimized</li>
+          </ul>
+        </div>
+      </div>
+      <div class="content-pillar">
+        <div class="cp-head">⚖️ Layer 2 — Comparative (MOFU)</div>
+        <div class="cp-body">
+          <ul>
+            <li>"sumPRO vs Hiring an In-House IT Team: Full Cost Breakdown"</li>
+            <li>"AWS vs Azure vs Google Cloud — Which Is Right for Your Business?"</li>
+            <li>"5 Signs Your Business Is Ready for a Custom ERP"</li>
+            <li>"Freelancer vs Agency for Digital Marketing — Pros, Cons & Pricing"</li>
+            <li>"Top 7 IT Companies for Startups in India (2026)"</li>
+            <li>Format: Comparison tables, expert POV, internal links to service pages</li>
+          </ul>
+        </div>
+      </div>
+      <div class="content-pillar">
+        <div class="cp-head">🏆 Layer 3 — Proof (BOFU)</div>
+        <div class="cp-body">
+          <ul>
+            <li>Client case studies with before/after metrics (even if anonymized initially)</li>
+            <li>"How We Built an ERP for [Industry] in 6 Weeks" — project narratives</li>
+            <li>Founder thought leadership: Nandini's perspective on India's digital transformation</li>
+            <li>Team expertise blogs: "From Telecom to Healthcare IT — How Our Team Bridges Industries"</li>
+            <li>Testimonial deep-dives: expanded client quotes with context</li>
+            <li>Format: Long-form narrative, quote callouts, schema-marked reviews</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:32px;">
+      <h4>📅 Content Calendar: 90-Day Sprint</h4>
+      <p><strong>Month 1:</strong> 8 Layer 1 educational articles (2 per service) + FAQ optimization of all service pages.<br>
+      <strong>Month 2:</strong> 6 Layer 2 comparison posts + 2 case study drafts + LinkedIn content calendar live.<br>
+      <strong>Month 3:</strong> 4 Layer 3 proof pieces + 2 lead magnet resources published + blog newsletter sequence (6 emails). Target: 40+ indexed pages by end of Month 3.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SOCIAL MEDIA + BRAND BUILDING -->
+<section class="section" style="background: #fafaf8;">
+  <div class="container">
+    <p class="section-label">Phase 3 — Brand Presence</p>
+    <h2 class="section-title">Social Media Marketing & Brand Building</h2>
+    <p class="section-intro">sumPRO has zero social presence today — the footer links go nowhere. This is a blank canvas. The strategy: establish presence on three platforms, build credibility-first, then scale reach.</p>
+
+    <div class="social-grid">
+      <div class="social-card">
+        <div class="social-platform">💼 LinkedIn <span style="font-size:10px;color:var(--accent);font-weight:600;background:#fff0ec;padding:2px 8px;border-radius:100px;font-family:var(--syne);">Priority #1</span></div>
+        <p>B2B decision-makers live here. This is where CTO, startup founders, HR heads, and enterprise buyers discover vendors. sumPRO must be active, credible, and useful — not promotional.</p>
+        <ul style="list-style:none;font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:5px;">
+          <li>🔹 Company page + Nandini personal brand page</li>
+          <li>🔹 Content: insight posts, team behind-the-scenes, client wins, industry commentary</li>
+          <li>🔹 Publish native LinkedIn articles for SEO cross-benefit</li>
+          <li>🔹 Engage in comments of competitor & industry posts daily</li>
+        </ul>
+        <div style="margin-top:12px;"><span class="freq-badge">4–5 posts/week</span></div>
+      </div>
+      <div class="social-card">
+        <div class="social-platform">📸 Instagram <span style="font-size:10px;color:var(--accent2);font-weight:600;background:#edf2f8;padding:2px 8px;border-radius:100px;font-family:var(--syne);">Brand Awareness</span></div>
+        <p>Visual brand-building for hiring credibility, culture showcasing, and reaching startup founders (25–40 demographic). Drives trust for referral-based leads.</p>
+        <ul style="list-style:none;font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:5px;">
+          <li>🔹 Team culture, work-from-office snapshots</li>
+          <li>🔹 Carousel posts: "5 signs you need cloud migration"</li>
+          <li>🔹 Reels: Quick tips, tech explainers, behind-the-scenes</li>
+          <li>🔹 Consistent visual identity — brand colors, fonts, templates in Canva Pro</li>
+        </ul>
+        <div style="margin-top:12px;"><span class="freq-badge">3–4 posts/week</span></div>
+      </div>
+      <div class="social-card">
+        <div class="social-platform">🐦 X (Twitter) <span style="font-size:10px;color:var(--muted);font-weight:600;background:var(--tag-bg);padding:2px 8px;border-radius:100px;font-family:var(--syne);">Thought Leadership</span></div>
+        <p>Tech ecosystem visibility. India's startup & tech community is active here. Great for reaching early adopters, journalists, and industry peers.</p>
+        <ul style="list-style:none;font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:5px;">
+          <li>🔹 Short-form tech opinions, industry news commentary</li>
+          <li>🔹 Thread format: "How we cut a client's cloud costs by 40%"</li>
+          <li>🔹 Reply & engage with Indian tech community influencers</li>
+          <li>🔹 Cross-post LinkedIn content in condensed format</li>
+        </ul>
+        <div style="margin-top:12px;"><span class="freq-badge">2–3 posts/week</span></div>
+      </div>
+      <div class="social-card">
+        <div class="social-platform">▶️ YouTube Shorts <span style="font-size:10px;color:var(--muted);font-weight:600;background:var(--tag-bg);padding:2px 8px;border-radius:100px;font-family:var(--syne);">Phase 2 Add-on</span></div>
+        <p>60-second explainer shorts ("What is ERP?", "Cloud vs On-Premise in 60 seconds") build AEO-friendly content that also feeds YouTube search and Google video carousel.</p>
+        <ul style="list-style:none;font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:5px;">
+          <li>🔹 Repurpose blog content into scripts</li>
+          <li>🔹 Add closed captions + keyword-rich descriptions</li>
+          <li>🔹 Embed on service pages to boost time-on-page</li>
+        </ul>
+        <div style="margin-top:12px;"><span class="freq-badge">1–2 Shorts/week</span></div>
+      </div>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin-top:8px;">
+      <h4 style="font-family:var(--syne);font-size:15px;font-weight:700;margin-bottom:16px;">🎨 Brand Identity Actions (Day 1–14)</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
+        <div style="font-size:13.5px;color:var(--muted);">✅ Create brand kit (logo variations, color codes, font stack) in Canva Pro or Figma</div>
+        <div style="font-size:13.5px;color:var(--muted);">✅ Set up & fully complete LinkedIn Company Page with verified domain</div>
+        <div style="font-size:13.5px;color:var(--muted);">✅ Instagram Business account — link to website, write bio with keyword + CTA</div>
+        <div style="font-size:13.5px;color:var(--muted);">✅ Create 12 branded social media templates (carousel, quote, announcement, tip)</div>
+        <div style="font-size:13.5px;color:var(--muted);">✅ Google Business Profile: complete, add photos, enable messaging, request first 5 reviews</div>
+        <div style="font-size:13.5px;color:var(--muted);">✅ Claim brand handles on all platforms: @sumpro or @sumpro_in</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PAID CAMPAIGNS -->
+<section class="section alt">
+  <div class="container">
+    <p class="section-label">Phase 3 — Paid Growth</p>
+    <h2 class="section-title">Google Ads & Meta Paid Campaign Strategy</h2>
+    <p class="section-intro">Paid campaigns bridge the gap while SEO matures. Every rupee must be accountable — no brand awareness campaigns until conversion infrastructure is proven.</p>
+
+    <div class="strategy-grid">
+      <div class="strat-card">
+        <div class="strat-icon">🟢</div>
+        <h4>Google Search Campaigns</h4>
+        <p>Target high-intent buyers actively searching for sumPRO's exact services.</p>
+        <ul>
+          <li>Campaign 1: Software Development (ERP, Web Dev, Mobile App)</li>
+          <li>Campaign 2: Cloud Services (AWS/Azure migration, setup)</li>
+          <li>Campaign 3: Digital Marketing (SEO, PPC, Social Media)</li>
+          <li>Campaign 4: HR & Compliance (payroll, GST, company registration)</li>
+          <li>Match types: Phrase + Exact only in Month 1 — control spend</li>
+          <li>Negative keywords: "free", "DIY", "tutorial", "jobs" — essential for B2B</li>
+          <li>Ad extensions: Sitelinks, Callouts, Call, Location</li>
+        </ul>
+      </div>
+      <div class="strat-card">
+        <div class="strat-icon">🔵</div>
+        <h4>Meta Ads (Facebook + Instagram)</h4>
+        <p>Reach decision-makers and business owners before they actively search — awareness to consideration stage.</p>
+        <ul>
+          <li>Audience: Business owners + startup founders, 25–50 age, India, interests: startup, B2B software, business growth</li>
+          <li>Retargeting: Website visitors (14-day window) → lead magnet offer</li>
+          <li>Lead Gen Ads: Directly capture name + email + company without leaving Facebook</li>
+          <li>Carousel ads: Service showcase ("6 ways sumPRO can grow your business")</li>
+          <li>Video ads: 15–30 second founder intro video — highest trust builder</li>
+          <li>Lookalike audiences from email list once 200+ subscribers</li>
+        </ul>
+      </div>
+      <div class="strat-card">
+        <div class="strat-icon">🟡</div>
+        <h4>Campaign Infrastructure (Pre-Launch)</h4>
+        <p>Non-negotiables before spending a rupee on ads.</p>
+        <ul>
+          <li>Google Tag Manager setup: track all form submissions, CTA clicks, scroll depth</li>
+          <li>GA4 conversion events: Contact form, WhatsApp click, phone call, portfolio view</li>
+          <li>Meta Pixel: Install on all pages, verify with Events Manager, create Custom Conversions</li>
+          <li>Dedicated landing pages per campaign — no sending traffic to homepage</li>
+          <li>UTM parameters on every ad URL — mandatory for attribution</li>
+          <li>A/B test: 2 headlines, 2 CTAs, 2 audience segments — always running</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>💰 Recommended Starting Budget</h4>
+      <p><strong>Month 1–2:</strong> ₹15,000–25,000/month total. 60% Google Search (higher intent), 40% Meta (awareness + retargeting). Optimize for cost per lead (CPL) under ₹500. Scale the channels hitting CPL targets. <strong>Month 3+:</strong> Double budget on winning campaigns, pause losers.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- LEAD GENERATION -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Phase 4 — Pipeline Building</p>
+    <h2 class="section-title">Lead Generation Strategy</h2>
+    <p class="section-intro">Multi-channel lead gen combining gated tools, outbound outreach, strategic partnerships, and conversion-optimized website elements. Goal: build a pipeline of 20–30 qualified leads/month by Month 3.</p>
+
+    <p style="font-family:var(--syne);font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent2);margin-bottom:20px;">🔒 Gated Resource Tools (Lead Magnets)</p>
+
+    <div class="lead-gen-grid">
+      <div class="tool-card">
+        <div class="tool-num">01</div>
+        <h4>IT Project Cost Estimator</h4>
+        <p>An interactive calculator where users input project type (web app, ERP, mobile), team size, timeline, and tech stack preferences — and get an estimated project cost range + recommendation. High-value, highly shareable.</p>
+        <span class="gate-tag">📧 Email Gate</span>
+        <span class="gate-tag">💼 B2B Intent</span>
+        <span class="gate-tag">🏆 Lead Quality: High</span>
+      </div>
+      <div class="tool-card blue">
+        <div class="tool-num">02</div>
+        <h4>Cloud Readiness Assessment</h4>
+        <p>A 10-question audit tool that assesses a company's infrastructure, security posture, and readiness for cloud migration. Output: a personalized readiness score + a downloadable PDF report with sumPRO's recommendations.</p>
+        <span class="gate-tag">📧 Email Gate</span>
+        <span class="gate-tag">📄 PDF Report</span>
+        <span class="gate-tag">🏆 Lead Quality: Very High</span>
+      </div>
+      <div class="tool-card gold">
+        <div class="tool-num">03</div>
+        <h4>Business Compliance Checklist</h4>
+        <p>A downloadable, interactive PDF covering GST, MSME, FSSAI, and company registration requirements based on business type (startup, SMB, healthcare, food). Targets sumPRO's compliance vertical — an underserved, high-intent audience.</p>
+        <span class="gate-tag">📧 Email Gate</span>
+        <span class="gate-tag">📥 Download</span>
+        <span class="gate-tag">⚡ Fast to Produce</span>
+      </div>
+      <div class="tool-card">
+        <div class="tool-num">04</div>
+        <h4>Free Website SEO Audit Report</h4>
+        <p>Users enter their website URL and receive a basic automated SEO audit (powered by a tool like SE Ranking or Screaming Frog API). Gate it behind a form — this attracts exactly the kind of SMB who needs sumPRO's digital marketing services.</p>
+        <span class="gate-tag">📧 Email Gate</span>
+        <span class="gate-tag">⚙️ Automated</span>
+        <span class="gate-tag">🎯 High Volume</span>
+      </div>
+    </div>
+
+    <p style="font-family:var(--syne);font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent2);margin-top:48px;margin-bottom:20px;">📡 Other Lead Generation Channels</p>
+
+    <div class="audit-grid">
+      <div class="audit-card">
+        <h4>🤝 LinkedIn Outreach (Outbound)</h4>
+        <ul>
+          <li>Identify 20 target accounts/week: startups, SMBs, healthcare clinics, manufacturing companies in Gurugram/NCR</li>
+          <li>Connect request with a personalized, non-pitchy note referencing a specific pain point</li>
+          <li>Follow-up sequence: 3 touchpoints over 14 days — value, social proof, soft CTA</li>
+          <li>Nandini's personal LinkedIn as primary outreach vehicle — founder-to-founder is highest open rate</li>
+          <li><strong>Tool:</strong> LinkedIn Sales Navigator, Expandi.io (safe automation)</li>
+        </ul>
+      </div>
+      <div class="audit-card blue">
+        <h4>📂 Aggregator & Directory Listings</h4>
+        <ul>
+          <li>Clutch.co: Create a profile, request 5 verified reviews — one of the top B2B IT vendor discovery platforms globally</li>
+          <li>GoodFirms, Sortlist, DesignRush: Free listings with portfolio projects</li>
+          <li>JustDial, IndiaMart: Local discovery for compliance and HR services</li>
+          <li>NASSCOM member directory listing</li>
+          <li>Google Business Profile: Optimized with photos, services, weekly posts, Q&A</li>
+          <li>Government vendor portals (GeM): Register for government project bids</li>
+        </ul>
+      </div>
+      <div class="audit-card gold">
+        <h4>✉️ Email Marketing & Nurture</h4>
+        <ul>
+          <li>Newsletter: Monthly "sumPRO Digest" — industry news + one educational piece + one case study highlight</li>
+          <li>Lead nurture sequence: 6-email drip triggered after any gated resource download</li>
+          <li>Segmented by service interest (tagged from lead magnet choice)</li>
+          <li>Subject lines A/B tested; open rate benchmark: 28%+</li>
+          <li><strong>Tool:</strong> Mailchimp (free tier to start) or Brevo</li>
+          <li>CRM: HubSpot Free or Zoho CRM for lead tracking & follow-up</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- KPIs & ANALYTICS -->
+<section class="section" style="background:#fafaf8;">
+  <div class="container">
+    <p class="section-label">Measurement & Accountability</p>
+    <h2 class="section-title">KPIs, Campaign Analysis & Reporting</h2>
+    <p class="section-intro">Every activity must be tied to a measurable outcome. Here's the full reporting framework — monthly, quarterly, and weekly — with the exact metrics that matter.</p>
+
+    <table class="kpi-table">
+      <thead>
+        <tr>
+          <th>Pillar</th>
+          <th>Key Metrics (KPIs)</th>
+          <th>Target (Month 3)</th>
+          <th>Tool</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="kpi-label">SEO & Organic</span></td>
+          <td>Organic sessions, keyword rankings, Domain Authority, CTR, impressions</td>
+          <td>500+ monthly organic visits, 15+ keywords in Top 30</td>
+          <td>GA4, GSC, Ahrefs</td>
+        </tr>
+        <tr>
+          <td><span class="kpi-label">Paid Ads (Google)</span></td>
+          <td>Impressions, CTR, CPC, CPA, Conversion Rate, ROAS</td>
+          <td>CTR &gt; 4%, CPA ≤ ₹500/lead, Conv Rate ≥ 3%</td>
+          <td>Google Ads, GA4</td>
+        </tr>
+        <tr>
+          <td><span class="kpi-label">Meta Ads</span></td>
+          <td>Reach, CPM, CTR, CPL, Lead Form Submissions</td>
+          <td>CPL ≤ ₹300, 20+ leads/month from Meta</td>
+          <td>Meta Ads Manager, GA4</td>
+        </tr>
+        <tr>
+          <td><span class="kpi-label">Social Media</span></td>
+          <td>Follower growth, reach, engagement rate, profile visits, DMs</td>
+          <td>LinkedIn 300+ followers, 4% avg engagement rate</td>
+          <td>LinkedIn Analytics, Meta Insights</td>
+        </tr>
+        <tr>
+          <td><span class="kpi-label">Lead Generation</span></td>
+          <td>Total leads, lead quality score, lead-to-meeting rate, pipeline value</td>
+          <td>25+ qualified leads/month, 30% lead-to-call rate</td>
+          <td>HubSpot / Zoho CRM</td>
+        </tr>
+        <tr>
+          <td><span class="kpi-label">Content & Email</span></td>
+          <td>Blog sessions, avg time on page, email open rate, CTR, unsubscribe rate</td>
+          <td>Open rate &gt; 28%, blog avg session &gt; 2.5 min</td>
+          <td>Mailchimp, GA4</td>
+        </tr>
+        <tr>
+          <td><span class="kpi-label">Overall Business</span></td>
+          <td>Revenue from digital channels, new clients acquired, cost per acquisition</td>
+          <td>3–5 new clients/month, CPA ≤ ₹3,000</td>
+          <td>CRM + manual tracking</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;">
+        <h4 style="font-family:var(--syne);font-size:14px;font-weight:700;margin-bottom:14px;">📅 Weekly Reporting Rhythm</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+          <li style="font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;">→</span>Monday: Campaign performance review (Google + Meta spend, conversions)</li>
+          <li style="font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;">→</span>Wednesday: GSC + rankings check; flag any ranking drops or crawl errors</li>
+          <li style="font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;">→</span>Friday: Social media performance; content calendar for next week confirmed</li>
+          <li style="font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;">→</span>Monthly: Full report deck — all channels, funnel metrics, spend vs pipeline</li>
+        </ul>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;">
+        <h4 style="font-family:var(--syne);font-size:14px;font-weight:700;margin-bottom:14px;">🛠 Analytics Stack</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+          <li style="font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;">→</span>GA4: All site traffic, conversion events, user journeys</li>
+          <li style="font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;">→</span>Google Search Console: Keyword positions, CTR, crawl health</li>
+          <li style="font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;">→</span>SEMrush / Ahrefs: Competitor tracking, backlink monitoring, keyword research</li>
+          <li style="font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;">→</span>Looker Studio (free): Unified dashboard pulling GA4 + GSC + Ads data</li>
+          <li style="font-size:13.5px;color:var(--muted);padding-left:18px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;">→</span>Hotjar: Heatmaps + session recordings to optimize landing page conversion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TOOLS STACK -->
+<section class="tools-section">
+  <div class="container">
+    <p class="section-label">Required Expertise & Tooling</p>
+    <h2 class="section-title">Full Marketing Technology Stack</h2>
+    <p class="section-intro">The complete toolkit I work with — organized by function. Every tool has a specific job; no redundancy, no gaps.</p>
+
+    <div class="tools-row">
+      <div class="tool-group">
+        <h5>🔍 SEO & Research</h5>
+        <ul>
+          <li><span></span>Google Search Console</li>
+          <li><span></span>GA4 (Google Analytics 4)</li>
+          <li><span></span>SEMrush</li>
+          <li><span></span>Ahrefs</li>
+          <li><span></span>Screaming Frog SEO Spider</li>
+          <li><span></span>Google Keyword Planner</li>
+          <li><span></span>AlsoAsked / AnswerThePublic</li>
+        </ul>
+      </div>
+      <div class="tool-group">
+        <h5>📣 Paid Advertising</h5>
+        <ul>
+          <li><span></span>Google Ads (Search, Display, PMax)</li>
+          <li><span></span>Meta Ads Manager</li>
+          <li><span></span>Google Tag Manager</li>
+          <li><span></span>Meta Pixel / CAPI</li>
+          <li><span></span>Google Merchant Center</li>
+          <li><span></span>Looker Studio (reporting)</li>
+          <li><span></span>Optmyzr (bid management)</li>
+        </ul>
+      </div>
+      <div class="tool-group">
+        <h5>✍️ Content & Social</h5>
+        <ul>
+          <li><span></span>Canva Pro (visual content)</li>
+          <li><span></span>Buffer / Hootsuite (scheduling)</li>
+          <li><span></span>Notion (editorial calendar)</li>
+          <li><span></span>Surfer SEO (content optimization)</li>
+          <li><span></span>Hemingway App (readability)</li>
+          <li><span></span>CapCut / DaVinci Resolve (video)</li>
+        </ul>
+      </div>
+      <div class="tool-group">
+        <h5>🧲 Lead Gen & CRM</h5>
+        <ul>
+          <li><span></span>HubSpot Free CRM</li>
+          <li><span></span>Mailchimp / Brevo (email)</li>
+          <li><span></span>Typeform / Tally (lead forms)</li>
+          <li><span></span>LinkedIn Sales Navigator</li>
+          <li><span></span>Hotjar (conversion optimization)</li>
+          <li><span></span>Calendly (consultation booking)</li>
+          <li><span></span>Zapier (automation)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- IMPLEMENTATION ROADMAP -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Execution Plan</p>
+    <h2 class="section-title">90-Day Roadmap</h2>
+    <p class="section-intro">A phased, sequenced plan that ensures foundations are solid before scale. No ad budget goes live until the tracking and conversion infrastructure is ready.</p>
+
+    <div class="two-col">
+      <div>
+        <div class="timeline">
+          <div class="tl-item">
+            <span class="tl-phase">Month 1 — Days 1–30</span>
+            <h5>Foundation & Fix</h5>
+            <p>Website audit implementation: schema markup, social links fixed, FAQ pages, GSC + GA4 setup, GTM installed, Meta Pixel live. Brand kit created. All social handles claimed and profiles set up. Google Business Profile complete. First 4 blog articles published.</p>
+          </div>
+          <div class="tl-item">
+            <span class="tl-phase">Month 2 — Days 31–60</span>
+            <h5>Content Momentum + Paid Launch</h5>
+            <p>8 more blog articles live. First Google Search campaign launched (₹10,000 budget, 2 service campaigns). Meta awareness campaign live. Social media: 3 posts/week cadence established. First lead magnet (IT Cost Estimator) built and promoted. LinkedIn outreach begins.</p>
+          </div>
+          <div class="tl-item">
+            <span class="tl-phase">Month 3 — Days 61–90</span>
+            <h5>Scale & Optimize</h5>
+            <p>All 4 lead magnet tools live. Email nurture sequences active. Retargeting campaigns running on Meta. Clutch.co profile with 3+ reviews. Full KPI dashboard live in Looker Studio. First monthly performance report delivered. Keyword rankings tracked; top 5 articles optimized for featured snippets. Review and double budget on winning campaigns.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--ink);border-radius:12px;padding:32px;color:#fff;height:100%;">
+          <h4 style="font-family:var(--syne);font-size:15px;font-weight:800;color:#fff;margin-bottom:20px;">📋 What You're Getting</h4>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <span style="font-size:20px;flex-shrink:0;">🎯</span>
+              <div>
+                <div style="font-family:var(--syne);font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;">Strategic thinking, not just execution</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;">Every campaign is built on data and audience insight — not guesswork. A/B testing baked in from day one.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <span style="font-size:20px;flex-shrink:0;">📊</span>
+              <div>
+                <div style="font-family:var(--syne);font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;">Full-funnel accountability</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;">From first impression to signed contract — every touchpoint tracked, reported, and optimized monthly.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <span style="font-size:20px;flex-shrink:0;">🔮</span>
+              <div>
+                <div style="font-family:var(--syne);font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;">Future-proof: SEO + AI search</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;">Content and schema strategy built for both Google rankings and ChatGPT/Gemini citations — the two primary discovery channels of 2026 and beyond.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <span style="font-size:20px;flex-shrink:0;">🤝</span>
+              <div>
+                <div style="font-family:var(--syne);font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;">Self-sufficient from day one</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;">Works independently in a remote setup. No hand-holding needed — structured reporting keeps stakeholders informed without micromanagement.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="brief-footer">
+  <p>Prepared by <strong>Digital Marketing Strategist</strong> · For <strong>sumPRO India Pvt. Ltd.</strong> · sumpro.in</p>
+  <p style="margin-top:8px;font-size:11px;opacity:0.6;">Strategy Brief — Confidential · All channel recommendations based on brand audit conducted June 2026</p>
+</div>
+
+</body>
+</html>
